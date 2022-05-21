@@ -7,7 +7,7 @@ function logWarning(msg) {
 }
 
 function logError(msg) {
-    console.log(`[Log] ${msg}`);
+    console.log(`[Error] ${msg}`);
 }
 
 module.exports = {

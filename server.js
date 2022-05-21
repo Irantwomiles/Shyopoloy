@@ -26,7 +26,7 @@ io.on("connection", (socket) => {
     playerManager.addPlayer(socket);
 
     socket.on('lobby-info', (data) => {
-        console.log("lobby-info:", data);
+        console.log("lobby-info");
         io.to(socket.id).emit('lobby-info', gameManager.getGameInfoAll());
     })
 
@@ -40,6 +40,7 @@ io.on("connection", (socket) => {
         }
 
         gameManager.createGame(io, player, data);
+
     })
 
     socket.on('join-lobby', (data) => {

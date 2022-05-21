@@ -55,6 +55,29 @@ class GameManager {
         }
 
         game.addPlayer(player);
+        this.getGameBoard(io, player, room);
+    }
+
+    getGameBoard(io, player, room) {
+
+        const game = this.getGameByRoom(room);
+
+        if(game === null) {
+            logError(`Could not find a game with the room name ${room}`);
+            return;
+        }
+
+        if(!player.isInGame()) {
+            logError(`Player ${player.socket.id} is not in a game.`);
+            return;
+        }
+
+        if(!game.isPlayerHere(player)) {
+            logError(`Player ${player.socket.id} is not in game ${game.id}.`);
+            return;
+        }
+
+        game.sendGameBoard(io);
     }
 
     getGameInfo(io, room) {
